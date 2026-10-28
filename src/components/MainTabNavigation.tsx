@@ -4,6 +4,7 @@ import React from 'react';
 import { usePolicyStore } from '@/store/usePolicyStore';
 import { MainTabType } from '@/types/policy';
 import { Landmark, Lightbulb, Bell, Sparkles } from 'lucide-react';
+import { mockPolicies } from '@/data/mockPolicies';
 
 interface TabItem {
   id: MainTabType;
@@ -19,12 +20,11 @@ const TABS: TabItem[] = [
     label: '청년 정책',
     subLabel: '지원금 · 대출 · 소득공제',
     icon: <Landmark className="w-4 h-4 sm:w-5 sm:h-5" />,
-    badge: '15건',
   },
   {
     id: 'TIPS',
     label: '청년꿀팁',
-    subLabel: '이력서 · 이직/취업 · 재테크 · 부업',
+    subLabel: '이력서 · 이직 · 재테크 · 부업 · 노동법',
     icon: <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />,
     badge: 'HOT',
   },
@@ -72,7 +72,17 @@ export const MainTabNavigation: React.FC = () => {
                     <span className={`text-xs sm:text-sm font-black tracking-tight ${isActive ? 'text-blue-900 dark:text-blue-100' : 'text-slate-800 dark:text-slate-200'}`}>
                       {tab.label}
                     </span>
-                    {tab.badge && (
+                    {tab.id === 'POLICIES' ? (
+                      <span
+                        className={`px-1.5 py-0.2 rounded-md text-[10px] font-extrabold ${
+                          isActive
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
+                        }`}
+                      >
+                        {mockPolicies.length}건
+                      </span>
+                    ) : tab.badge ? (
                       <span
                         className={`px-1.5 py-0.2 rounded-md text-[10px] font-extrabold ${
                           isActive
@@ -84,7 +94,7 @@ export const MainTabNavigation: React.FC = () => {
                       >
                         {tab.badge}
                       </span>
-                    )}
+                    ) : null}
                   </div>
                   <p className="text-[11px] text-slate-400 dark:text-slate-500 hidden md:block font-medium truncate mt-0.5">
                     {tab.subLabel}

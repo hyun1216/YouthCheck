@@ -244,6 +244,75 @@ export const mockPolicies: Policy[] = [
     hostingAgency: '한국장학재단 · 국세청',
     tags: ['#연말정산', '#15%세액공제', '#학자금상환', '#직장인환급'],
   },
+
+  // 9. 청년 국가기술자격시험 응시료 지원
+  {
+    id: 'policy-career-license-discount',
+    officialName: '청년 국가기술자격시험 응시료 지원',
+    title: '만 34세 이하라면 소득 무관! 국가기술자격증 시험비 연 3회 반값 지원',
+    subTitle: '기사·산업기사·기능사 실기/필기 접수할 때 결제창에서 즉시 50% 감면',
+    eligibilitySummary: '만 34세 이하 청년 누구나 (소득 무관, 재직자/구직자 모두 가능)',
+    benefitSummary: '국가기술자격 시험 응시료 50% 즉시 지원 (연간 최대 3회)',
+    benefitHighlight: '👉 Q-Net 국가기술자격 시험 접수비 50% 즉시 할인 (연 3회 한도)',
+    criticalBadge: '소득 무관 · 만 34세 이하',
+    category: 'CAREER',
+    region: ['전국'],
+    ageRange: {
+      min: 19,
+      max: 34,
+    },
+    maxAnnualIncome: null,
+    employmentCondition: ['ALL'],
+    applicationType: 'ALWAYS',
+    isDeadlineImminent: false,
+    eligibilityChecklist: [
+      '만 34세 이하 청년 (접수일 기준)',
+      '한국산업인력공단(Q-Net) 시행 국가기술자격 시험 접수자',
+      '소득 및 재직 여부 무관 (일반 직장인 전원 가능)',
+    ],
+    requiredDocuments: [
+      '별도 서류 제출 없음 (Q-Net 원서접수 시 청년 본인인증으로 자동 적용)',
+    ],
+    officialUrl: 'https://www.q-net.or.kr/',
+    hostingAgency: '한국산업인력공단 · 고용노동부',
+    tags: ['#응시료50%지원', '#국가기술자격', '#큐넷할인', '#연3회', '#소득무관'],
+  },
+
+  // 10. 경기도 청년 복지포인트
+  {
+    id: 'policy-gyeonggi-welfare-point',
+    officialName: '경기도 청년 복지포인트',
+    title: '중소기업 다닌다면 연 120만 원 복지비 받기! 청년 복지포인트',
+    subTitle: '회사 복지가 아쉬웠다면? 분기마다 30만 원씩 쇼핑·문화비 포인트 지급',
+    eligibilitySummary: '경기도 중소·중견기업 재직 + 주 36시간 이상 근로자',
+    benefitSummary: '연간 최대 120만 원 상당 복지포인트 분기별 지급',
+    benefitHighlight: '👉 1년에 총 120만 원 복지포인트 현금처럼 사용 가능',
+    criticalBadge: '경기 소재 중소기업 재직',
+    category: 'CAREER',
+    region: ['경기'],
+    ageRange: { min: 19, max: 39 },
+    maxAnnualIncome: 4440,
+    employmentCondition: ['SME'],
+    applicationType: 'PERIOD',
+    startDate: '2026-04-01',
+    endDate: '2026-04-15',
+    isDeadlineImminent: false,
+    eligibilityChecklist: [
+      '만 19세 ~ 39세 청년 근로자 (주민등록상 경기도 거주)',
+      '경기도 소재 중소·중견기업, 비영리법인 재직',
+      '주 36시간 이상 근무 및 3개월 이상 재직자',
+      '3개월 평균 건강보험료 기준 충족 (연봉 약 4,440만 원 이하 수준)',
+    ],
+    requiredDocuments: [
+      '사업자등록증 사본 (회사 요청)',
+      '4대 사회보험 가입자 가입내역확인서',
+      '건강보험료 납부확인서 (직전 3개월)',
+      '주민등록초본 (신청일 이후 발급분)',
+    ],
+    officialUrl: 'https://youth.jobaba.net/',
+    hostingAgency: '경기도일자리재단 (잡아바)',
+    tags: ['#경기도청년', '#복지포인트', '#연120만원', '#중소기업복지', '#분기별모집'],
+  },
 ];
 
 export const POLICIES = mockPolicies;

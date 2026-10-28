@@ -27,12 +27,26 @@ import {
   Search,
   X,
   Award,
+  FileText,
+  Briefcase,
+  Coins,
+  Rocket,
+  Scale,
 } from 'lucide-react';
+import { TipSubCategory } from '@/types/policy';
+
+const TIP_SUBCATEGORIES: { id: TipSubCategory; label: string; icon: React.ElementType }[] = [
+  { id: '전체', label: '전체', icon: Sparkles },
+  { id: '이력서', label: '이력서', icon: FileText },
+  { id: '이직&취직', label: '이직&취직', icon: Briefcase },
+  { id: '재테크', label: '재테크', icon: Coins },
+  { id: '부업', label: '부업', icon: Rocket },
+  { id: '노동관련법규', label: '노동관련법규', icon: Scale },
+];
 
 export default function HomePage() {
   const [hasMounted, setHasMounted] = useState(false);
-  const [tipCategoryFilter, setTipCategoryFilter] = useState<string>('ALL');
-  const [tipSearchQuery, setTipSearchQuery] = useState<string>('');
+  const [tipSubCategory, setTipSubCategory] = useState<TipSubCategory>('전체');
 
   const {
     activeMainTab,
@@ -121,8 +135,10 @@ export default function HomePage() {
 
   // Tips & News filtering
   const tipsItems = useMemo(() => {
-    return mockTips.filter((item) => item.tab === 'TIPS');
-  }, []);
+    const allTips = mockTips.filter((item) => item.tab === 'TIPS');
+    if (tipSubCategory === '전체') return allTips;
+    return allTips.filter((item) => item.subCategory === tipSubCategory);
+  }, [tipSubCategory]);
 
   const newsItems = useMemo(() => {
     return mockTips.filter((item) => item.tab === 'NEWS');
@@ -141,7 +157,7 @@ export default function HomePage() {
       {/* Sticky Header */}
       <Header />
 
-      {/* Top Level Tabs Navigation (🏛️ 청년 정책 / 💡 이력서 & 취업 꿀팁 / 📢 실시간 소식) */}
+      {/* Top Level Tabs Navigation (🏛️ 청년 정책 / 💡 청년꿀팁 / 📢 실시간 소식) */}
       <MainTabNavigation />
 
       {/* TAB 1: 🏛️ 청년 정책 뷰 (POLICIES) */}
@@ -258,42 +274,84 @@ export default function HomePage() {
         </>
       )}
 
-      {/* TAB 2: 💡 이력서 & 취업 꿀팁 뷰 (TIPS) */}
+      {/* TAB 2: 💡 청년꿀팁 뷰 (TIPS) */}
       {activeMainTab === 'TIPS' && (
         <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 lg:px-8 py-6 sm:py-9">
           {/* Section Header */}
           <div className="mb-6">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950/80 dark:text-amber-300 text-xs font-bold mb-2">
               <Lightbulb className="w-3.5 h-3.5 text-amber-600" />
-              <span>청년 직무 & 이력서 실전 가이드</span>
+              <span>청년 커리어 · 재테크 & 노동법 실전 가이드</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
-              이력서 & 취업 실전 꿀팁
+              청년꿀팁
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-              정부 공인 직무능력은행 활용법부터 합격하는 경력기술서 STAR 작성 공식까지 한눈에 확인하세요.
+              이력서 작성 공식부터 이직·취직 치트키, 5년 치 세금 환급 재테크, N잡러 부업 세무, 청년 필수 노동법까지 알짜 정보만 모았습니다.
             </p>
           </div>
 
-          {/* (1) Featured Hero Card: NCS 직무능력은행 가이드 */}
+          {/* Subcategory Filter Pills (중분류 탭) */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none mb-6">
+            {TIP_SUBCATEGORIES.map((sub) => {
+              const isActive = tipSubCategory === sub.id;
+              const count =
+                sub.id === '전체'
+                  ? mockTips.filter((t) => t.tab === 'TIPS').length
+                  : mockTips.filter((t) => t.tab === 'TIPS' && t.subCategory === sub.id).length;
+              const Icon = sub.icon;
+              return (
+                <button
+                  key={sub.id}
+                  type="button"
+                  onClick={() => setTipSubCategory(sub.id)}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+                    isActive
+                      ? 'bg-amber-500 text-white shadow-xs dark:bg-amber-500 dark:text-slate-950 font-extrabold'
+                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border border-slate-200/80 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 hover:text-slate-900 dark:hover:text-white'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white dark:text-slate-950' : 'text-slate-400'}`} />
+                  <span>{sub.label}</span>
+                  <span
+                    className={`text-[11px] px-1.5 py-0.2 rounded-full font-semibold ${
+                      isActive
+                        ? 'bg-amber-600/40 text-white dark:bg-black/20 dark:text-slate-950'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* (1) Featured Hero Card (전체 또는 해당 중분류에 featured가 있을 때만 노출) */}
           {featuredTip && <TipCard item={featuredTip} />}
 
-          {/* (2) Non-featured Tip Cards Grid */}
-          <div className="mt-6">
+          {/* (2) Tip Cards Grid */}
+          <div className={featuredTip ? 'mt-6' : 'mt-2'}>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span>실전 취업 팁 & 환급 치트키</span>
-                <span className="text-xs text-blue-600 dark:text-blue-400 font-semibold">
-                  총 {nonFeaturedTips.length}개
+                <span>{tipSubCategory === '전체' ? '실전 청년 꿀팁 모음' : `${tipSubCategory} 꿀팁`}</span>
+                <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold">
+                  총 {tipsItems.length}개
                 </span>
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
-              {nonFeaturedTips.map((tip) => (
-                <TipCard key={tip.id} item={tip} />
-              ))}
-            </div>
+            {tipsItems.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                {nonFeaturedTips.map((tip) => (
+                  <TipCard key={tip.id} item={tip} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-10 px-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <p className="text-xs text-slate-500">해당 카테고리에 등록된 꿀팁이 아직 없습니다.</p>
+              </div>
+            )}
           </div>
         </main>
       )}

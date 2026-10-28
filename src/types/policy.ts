@@ -11,6 +11,8 @@ export interface Policy {
   benefitSummary: string;     // 직관적인 혜택 1줄 (예: "5년간 최대 5,000만 원 목돈 마련 + 정부기여금 & 비과세")
   officialName: string;       // 공식 행정 정책명 (예: "청년도약계좌")
   criticalBadge?: string;     // 결정적 자격 조건 강조 뱃지 (예: "중소기업 재직 필수", "무주택 세대주", "미취업 구직자")
+  benefitHighlight?: string;  // 역발상 혜택 하이라이트 문구
+  isDeadlineImminent?: boolean;
 
   // 기존 호환 필드
   title?: string;             // fallback for title (officialName과 동일)
@@ -41,20 +43,20 @@ export interface Policy {
 }
 
 // 꿀팁 및 소식용 데이터 타입
-export type TipSubCategory = '전체' | '이력서' | '이직&취직' | '재테크' | '부업';
+export type TipSubCategory = '전체' | '이력서' | '이직&취직' | '재테크' | '부업' | '노동관련법규';
 
 export interface ContentItem {
   id: string;
   tab: 'TIPS' | 'NEWS';
-  subCategory?: '이력서' | '이직&취직' | '재테크' | '부업'; // 중분류 카테고리
+  subCategory?: '이력서' | '이직&취직' | '재테크' | '부업' | '노동관련법규'; // 중분류 카테고리
   categoryTag: string; // 예: "이력서/취업", "자격/훈련", "정책발표", "경력정리"
   title: string;
   description: string;
   isFeatured?: boolean; // 상단 강조 여부
   badge?: string; // "필독", "HOT", "NEW", "추천"
   date: string; // YYYY-MM-DD
-  linkUrl: string;
-  linkText: string;
+  linkUrl?: string;
+  linkText?: string;
   keyPoints?: string[]; // 3줄 핵심 요약
   readTimeMinutes?: number; // 읽는 데 걸리는 시간 (예: 2분)
   tags?: string[]; // ['#이력서', '#경력정리', '#국비지원', '#포트폴리오']

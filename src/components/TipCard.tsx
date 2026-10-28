@@ -15,6 +15,7 @@ import {
   Award,
   ChevronDown,
   ChevronUp,
+  Building2,
 } from 'lucide-react';
 
 interface TipCardProps {
@@ -231,15 +232,22 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
             </button>
           )}
 
-          <a
-            href={item.linkUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-900 dark:hover:bg-blue-500 dark:hover:text-white transition-all shadow-xs"
-          >
-            <span>{item.linkText.replace(' ↗', '')}</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
+          {item.linkUrl ? (
+            <a
+              href={item.linkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-900 dark:hover:bg-blue-500 dark:hover:text-white transition-all shadow-xs"
+            >
+              <span>{item.linkText ? item.linkText.replace(' ↗', '') : '바로가기'}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          ) : (
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-50 dark:bg-amber-950/70 text-amber-800 dark:text-amber-300 border border-amber-200/80 dark:border-amber-800/80 shadow-2xs">
+              <Building2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+              <span>{item.linkText || '본인 가입 은행 앱에서 확인'}</span>
+            </div>
+          )}
         </div>
       </div>
     </div>
