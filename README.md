@@ -73,10 +73,13 @@
 
 ```text
 YouthCheck/
+├── public/
+│   └── og-image.png             # SNS 공유용 고해상도 OpenGraph 썸네일 이미지
 ├── src/
 │   ├── app/
 │   │   ├── globals.css              # Tailwind v4 테마 및 Pretendard 폰트 토큰
 │   │   ├── layout.tsx               # SEO 메타데이터, OpenGraph 및 언어(ko) 설정
+│   │   ├── opengraph-image.png      # Next.js 공식 규격 자동 생성 OG 이미지
 │   │   └── page.tsx                 # 대분류 탭 전환, 실시간 필터링 및 메인 피드 조립
 │   ├── components/
 │   │   ├── Header.tsx               # 상단 고정 헤더, 북마크 카운터, 브랜드 로고
