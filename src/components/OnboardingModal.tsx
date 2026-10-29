@@ -89,11 +89,11 @@ export const OnboardingModal: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-blue-950 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-xl bg-blue-100 dark:bg-slate-800 text-blue-600 dark:text-sky-300 flex items-center justify-center">
               <Target className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs font-bold text-blue-600 dark:text-blue-400">3초 체크 온보딩</span>
+              <span className="text-xs font-bold text-blue-600 dark:text-sky-300">3초 체크 온보딩</span>
               <h2 className="text-base font-extrabold text-slate-900 dark:text-white">내 맞춤 정책 조건 입력</h2>
             </div>
           </div>
@@ -119,14 +119,14 @@ export const OnboardingModal: React.FC = () => {
               onClick={() => setStep(s.num as 1 | 2 | 3)}
               className={`flex-1 py-1.5 px-2 rounded-xl text-xs font-bold text-center transition-all flex items-center justify-center gap-1.5 ${
                 step === s.num
-                  ? 'bg-blue-600 text-white shadow-xs'
+                  ? 'bg-blue-600 text-white shadow-xs dark:bg-slate-700 dark:shadow-none'
                   : step > s.num
-                  ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300'
+                  ? 'bg-blue-50 text-blue-700 dark:bg-slate-800 dark:text-slate-300'
                   : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
               }`}
             >
               <span>Step {s.num}. {s.label}</span>
-              {step > s.num && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />}
+              {step > s.num && <Check className="w-3.5 h-3.5 text-blue-600 dark:text-sky-300" />}
             </button>
           ))}
         </div>
@@ -145,7 +145,7 @@ export const OnboardingModal: React.FC = () => {
 
             <div className="p-4 rounded-2xl bg-blue-50/50 dark:bg-slate-800/60 border border-blue-100 dark:border-slate-700 text-center">
               <span className="text-xs text-slate-500 dark:text-slate-400 block mb-1">선택한 나이</span>
-              <span className="text-3xl font-black text-blue-600 dark:text-blue-400">
+              <span className="text-3xl font-black text-blue-600 dark:text-sky-300">
                 만 {selectedAge}세
               </span>
             </div>
@@ -157,7 +157,7 @@ export const OnboardingModal: React.FC = () => {
               step="1"
               value={selectedAge}
               onChange={(e) => setSelectedAge(Number(e.target.value))}
-              className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              className="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600 dark:accent-sky-400"
             />
 
             <div className="grid grid-cols-5 gap-1.5 pt-1">
@@ -168,8 +168,8 @@ export const OnboardingModal: React.FC = () => {
                   onClick={() => setSelectedAge(v)}
                   className={`py-1.5 text-xs font-bold rounded-xl border transition-all ${
                     selectedAge === v
-                      ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
-                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-blue-400'
+                      ? 'bg-blue-600 text-white border-blue-600 shadow-xs dark:bg-slate-700 dark:border-slate-600 dark:shadow-none'
+                      : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-slate-500'
                   }`}
                 >
                   {v}세
@@ -180,7 +180,7 @@ export const OnboardingModal: React.FC = () => {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="w-full mt-4 flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold shadow-md shadow-blue-500/20 transition-all"
+              className="w-full mt-4 flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-700/85 dark:hover:bg-blue-600 text-white text-sm font-bold shadow-md shadow-blue-500/20 dark:shadow-none transition-all"
             >
               <span>다음: 연봉 구간 선택</span>
               <ArrowRight className="w-4 h-4" />
@@ -210,8 +210,8 @@ export const OnboardingModal: React.FC = () => {
                     onClick={() => setSelectedIncome(opt.value)}
                     className={`w-full flex items-center justify-between p-3.5 rounded-2xl border text-left transition-all ${
                       isSelected
-                        ? 'bg-blue-50/80 dark:bg-blue-950/40 border-blue-500 text-blue-950 dark:text-blue-200 shadow-xs ring-1 ring-blue-500/30'
-                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-slate-300'
+                        ? 'bg-blue-50/80 dark:bg-slate-800 border-blue-500 dark:border-slate-600 text-blue-950 dark:text-slate-100 shadow-xs dark:shadow-none ring-1 ring-blue-500/30 dark:ring-slate-600/50'
+                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
                     <div>
@@ -219,7 +219,7 @@ export const OnboardingModal: React.FC = () => {
                       <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{opt.desc}</div>
                     </div>
                     {isSelected && (
-                      <div className="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0">
+                      <div className="w-5 h-5 rounded-full bg-blue-600 dark:bg-sky-500 text-white flex items-center justify-center shrink-0">
                         <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                       </div>
                     )}
@@ -239,7 +239,7 @@ export const OnboardingModal: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStep(3)}
-                className="w-2/3 flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 transition-all"
+                className="w-2/3 flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-700/85 dark:hover:bg-blue-600 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 dark:shadow-none transition-all"
               >
                 <span>다음: 고용 상태 선택</span>
                 <ArrowRight className="w-4 h-4" />
@@ -270,11 +270,11 @@ export const OnboardingModal: React.FC = () => {
                     onClick={() => setSelectedEmployment(emp.value)}
                     className={`p-3.5 rounded-2xl border text-left transition-all flex items-start gap-2.5 ${
                       isSelected
-                        ? 'bg-blue-50/80 dark:bg-blue-950/40 border-blue-500 text-blue-950 dark:text-blue-200 shadow-xs ring-1 ring-blue-500/30'
-                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-slate-300'
+                        ? 'bg-blue-50/80 dark:bg-slate-800 border-blue-500 dark:border-slate-600 text-blue-950 dark:text-slate-100 shadow-xs dark:shadow-none ring-1 ring-blue-500/30 dark:ring-slate-600/50'
+                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600'
                     }`}
                   >
-                    <div className="mt-0.5 text-blue-600 dark:text-blue-400 shrink-0">{emp.icon}</div>
+                    <div className="mt-0.5 text-blue-600 dark:text-sky-300 shrink-0">{emp.icon}</div>
                     <div className="flex-1">
                       <div className="text-xs sm:text-sm font-bold">{emp.label}</div>
                       <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">{emp.desc}</div>
@@ -308,7 +308,7 @@ export const OnboardingModal: React.FC = () => {
               <button
                 type="button"
                 onClick={handleComplete}
-                className="w-2/3 flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 transition-all"
+                className="w-2/3 flex items-center justify-center gap-2 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-emerald-500/20 dark:shadow-none transition-all"
               >
                 <Sparkles className="w-4 h-4" />
                 <span>맞춤 정책 {matchCount}건 바로보기</span>
@@ -320,7 +320,7 @@ export const OnboardingModal: React.FC = () => {
         {/* Footer info */}
         <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
           <span className="flex items-center gap-1">
-            <ShieldCheck className="w-3.5 h-3.5 text-blue-500" />
+            <ShieldCheck className="w-3.5 h-3.5 text-blue-500 dark:text-sky-400" />
             <span>입력한 조건은 브라우저에만 안전하게 저장됩니다</span>
           </span>
         </div>

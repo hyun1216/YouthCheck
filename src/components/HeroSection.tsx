@@ -28,19 +28,19 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden pt-7 pb-8 sm:pt-11 sm:pb-12 bg-gradient-to-b from-blue-50/80 via-slate-50/50 to-transparent dark:from-slate-900 dark:via-[#0c1322] dark:to-transparent border-b border-slate-200/60 dark:border-slate-800/60">
+    <section className="relative overflow-hidden pt-7 pb-8 sm:pt-11 sm:pb-12 bg-gradient-to-b from-blue-50/80 via-slate-50/50 to-transparent dark:from-slate-900 dark:via-slate-900/60 dark:to-transparent border-b border-slate-200/60 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           {/* Tagline Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/90 text-blue-700 dark:bg-blue-950 dark:text-blue-300 text-xs font-semibold mb-3.5 border border-blue-200/70 dark:border-blue-800/70 shadow-xs">
-            <Zap className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 fill-blue-600/30" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/90 text-blue-700 dark:bg-slate-800 dark:text-sky-300 text-xs font-semibold mb-3.5 border border-blue-200/70 dark:border-slate-700 shadow-xs dark:shadow-none">
+            <Zap className="w-3.5 h-3.5 text-blue-600 dark:text-sky-300 fill-blue-600/30 dark:fill-sky-400/20" />
             <span>광고 없는 순수 공공 혜택 큐레이션</span>
           </div>
 
           {/* Main Title (요구사항: 강렬하고 깔끔한 헤드카피) */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.2]">
             광고 없는 알짜 청년 정책, <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-emerald-600 dark:from-blue-400 dark:via-indigo-300 dark:to-emerald-300 bg-clip-text text-transparent">
               3초 만에 청년체크
             </span>
           </h1>
@@ -57,7 +57,7 @@ export const HeroSection: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsOnboardingOpen(true)}
-              className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-blue-500/25 active:scale-[0.99] transition-all"
+              className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-700 dark:to-indigo-800 dark:hover:from-blue-600 dark:hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-blue-500/25 dark:shadow-none active:scale-[0.99] transition-all"
             >
               <Target className="w-5 h-5 text-amber-300" />
               <span>🎯 내 조건으로 3초 만에 찾기</span>
@@ -86,7 +86,7 @@ export const HeroSection: React.FC = () => {
               <span>정부24 · 홈택스 · 복지로 정식 링크</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+              <ShieldCheck className="w-3.5 h-3.5 text-blue-500 dark:text-sky-400 shrink-0" />
               <span>2026 최신 정책 기준 반영</span>
             </div>
           </div>

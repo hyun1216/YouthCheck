@@ -35,10 +35,10 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
   // 1. Featured Hero Card (직무능력은행 안내 - 톤앤매너에 맞춘 깔끔하고 신뢰감 있는 디자인)
   if (item.isFeatured) {
     return (
-      <div className="rounded-3xl border border-blue-200 dark:border-blue-900/60 bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-slate-900/90 dark:via-slate-900 dark:to-slate-900 p-5 sm:p-7 shadow-xs mb-6 transition-all">
+      <div className="rounded-3xl border border-blue-200 dark:border-slate-800 bg-gradient-to-b from-blue-50/50 via-white to-white dark:from-slate-800/60 dark:via-slate-900 dark:to-slate-900 p-5 sm:p-7 shadow-xs mb-6 transition-all">
         {/* Top Badges */}
         <div className="flex items-center gap-2 flex-wrap mb-3">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white shadow-xs">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-600 dark:bg-slate-700 text-white shadow-xs dark:shadow-none">
             <Award className="w-3.5 h-3.5" />
             <span>{item.badge || '핵심 취업 치트키'}</span>
           </span>
@@ -63,12 +63,12 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
         {item.keyPoints && item.keyPoints.length > 0 && (
           <div className="mb-5 p-4 sm:p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-2">
             <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">
-              <FileCheck className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <FileCheck className="w-4 h-4 text-blue-600 dark:text-sky-300" />
               <span>30초 핵심 요약</span>
             </div>
             {item.keyPoints.map((point, idx) => (
               <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
-                <span className="w-4 h-4 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
+                <span className="w-4 h-4 rounded-full bg-blue-100 dark:bg-slate-700 text-blue-700 dark:text-sky-200 flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
                   {idx + 1}
                 </span>
                 <span className="font-medium leading-snug">{point}</span>
@@ -97,7 +97,7 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
             href={item.linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors"
+            className="flex-1 flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-700/85 dark:hover:bg-blue-600 text-white font-bold text-xs sm:text-sm shadow-xs dark:shadow-none transition-colors"
           >
             <span>{item.linkText}</span>
             <ExternalLink className="w-3.5 h-3.5" />
@@ -124,12 +124,12 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
 
   // 2. Standard Tip & Career Card
   return (
-    <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs hover:shadow-md hover:border-blue-400 dark:hover:border-blue-600 transition-all">
+    <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xs hover:shadow-md hover:border-blue-400 dark:hover:border-slate-600 transition-all">
       <div>
         {/* Top Meta */}
         <div className="flex items-center justify-between gap-2 mb-2.5">
           <div className="flex items-center gap-2">
-            <span className="px-2.5 py-0.8 rounded-lg text-[11px] font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/60 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800">
+            <span className="px-2.5 py-0.8 rounded-lg text-[11px] font-bold bg-blue-50 text-blue-700 dark:bg-slate-800 dark:text-sky-300 border border-blue-200/60 dark:border-slate-700">
               {item.categoryTag}
             </span>
             {item.badge && (
@@ -162,7 +162,7 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
             </div>
             {item.keyPoints.map((point, idx) => (
               <div key={idx} className="flex items-start gap-1.5 text-xs text-slate-600 dark:text-slate-300">
-                <span className="text-blue-600 dark:text-blue-400 font-bold shrink-0 mt-0.5">•</span>
+                <span className="text-blue-600 dark:text-sky-400 font-bold shrink-0 mt-0.5">•</span>
                 <span className="leading-snug">{point}</span>
               </div>
             ))}
@@ -189,7 +189,7 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
             <button
               type="button"
               onClick={() => setShowSnippet(!showSnippet)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-blue-400 hover:underline mb-2"
+              className="inline-flex items-center gap-1 text-xs font-bold text-blue-600 dark:text-sky-300 hover:underline mb-2"
             >
               <span>{showSnippet ? '양식 템플릿 접기' : '양식 템플릿 미리보기'}</span>
               {showSnippet ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -237,7 +237,7 @@ export const TipCard: React.FC<TipCardProps> = ({ item }) => {
               href={item.linkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-blue-600 dark:bg-white dark:text-slate-900 dark:hover:bg-blue-500 dark:hover:text-white transition-all shadow-xs"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-900 text-white hover:bg-blue-600 dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-white transition-all shadow-xs dark:shadow-none"
             >
               <span>{item.linkText ? item.linkText.replace(' ↗', '') : '바로가기'}</span>
               <ExternalLink className="w-3 h-3" />

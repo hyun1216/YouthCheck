@@ -107,7 +107,7 @@ export const FilterSection: React.FC = () => {
           <span className="text-xs font-bold text-slate-700 dark:text-slate-300 hidden sm:inline mr-1">
             적용 조건:
           </span>
-          <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 dark:bg-blue-950/70 dark:text-blue-300 border border-blue-200/70 dark:border-blue-800">
+          <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-50 text-blue-700 dark:bg-slate-800 dark:text-sky-300 border border-blue-200/70 dark:border-slate-700">
             만 {age}세
           </span>
           <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300">
@@ -124,7 +124,7 @@ export const FilterSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsOnboardingOpen(true)}
-            className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400 hover:underline ml-1"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 dark:text-sky-300 hover:underline ml-1"
           >
             <Target className="w-3 h-3" />
             <span>조건 재설정</span>
@@ -151,14 +151,14 @@ export const FilterSection: React.FC = () => {
             onClick={() => setIsFilterBarExpanded((prev) => !prev)}
             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
               isFilterBarExpanded
-                ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                ? 'bg-blue-600 text-white border-blue-600 shadow-xs dark:bg-slate-700 dark:border-slate-600 dark:text-white dark:shadow-none'
                 : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/60'
             }`}
           >
             <SlidersHorizontal className="w-3.5 h-3.5" />
             <span>조건 상세 필터 ⚙️</span>
             {activeFiltersCount > 0 && !isFilterBarExpanded && (
-              <span className="w-4 h-4 rounded-full bg-blue-600 text-white text-[10px] flex items-center justify-center font-bold">
+              <span className="w-4 h-4 rounded-full bg-blue-600 text-white dark:bg-slate-600 text-[10px] flex items-center justify-center font-bold">
                 {activeFiltersCount}
               </span>
             )}
@@ -180,7 +180,7 @@ export const FilterSection: React.FC = () => {
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
                   <span>만 나이:</span>
-                  <span className="text-blue-600 dark:text-blue-400 font-extrabold text-sm">{age}세</span>
+                  <span className="text-blue-600 dark:text-sky-300 font-extrabold text-sm">{age}세</span>
                 </label>
                 <span className="text-[10px] text-slate-400">19~39세</span>
               </div>
@@ -192,7 +192,7 @@ export const FilterSection: React.FC = () => {
                 step="1"
                 value={age}
                 onChange={(e) => setAge(Number(e.target.value))}
-                className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600 dark:accent-sky-400"
               />
 
               <div className="flex justify-between gap-1">
@@ -203,7 +203,7 @@ export const FilterSection: React.FC = () => {
                     onClick={() => setAge(val)}
                     className={`px-1.5 py-0.5 text-[10px] rounded font-semibold transition-colors ${
                       age === val
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-blue-600 text-white dark:bg-slate-700'
                         : 'text-slate-500 hover:text-slate-800 dark:text-slate-400'
                     }`}
                   >
@@ -216,9 +216,9 @@ export const FilterSection: React.FC = () => {
             {/* Region Selection */}
             <div className="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 space-y-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-blue-500" />
+                <MapPin className="w-3.5 h-3.5 text-blue-500 dark:text-sky-400" />
                 <span>거주 지역:</span>
-                <span className="text-blue-600 dark:text-blue-400 font-extrabold">{region}</span>
+                <span className="text-blue-600 dark:text-sky-300 font-extrabold">{region}</span>
               </label>
 
               <select
@@ -262,7 +262,7 @@ export const FilterSection: React.FC = () => {
             {/* Employment Selection */}
             <div className="p-3 rounded-xl bg-slate-50/80 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800 space-y-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-                <Building className="w-3.5 h-3.5 text-blue-600" />
+                <Building className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
                 <span>고용 형태:</span>
               </label>
 

@@ -53,15 +53,15 @@ export const MainTabNavigation: React.FC = () => {
                 onClick={() => setActiveMainTab(tab.id)}
                 className={`group relative flex-1 sm:flex-none flex items-center justify-center sm:justify-start gap-2.5 px-3 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-left transition-all ${
                   isActive
-                    ? 'bg-blue-50/90 text-blue-900 dark:bg-blue-950/60 dark:text-blue-200 shadow-xs ring-1 ring-blue-500/20'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/60'
+                    ? 'bg-blue-50/90 text-blue-900 dark:bg-slate-800/90 dark:text-slate-100 shadow-xs ring-1 ring-blue-500/20 dark:ring-slate-700'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800/40'
                 }`}
               >
                 <div
                   className={`p-2 rounded-xl transition-all ${
                     isActive
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400'
+                      ? 'bg-blue-600 dark:bg-slate-700 text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200 dark:bg-slate-800/80 dark:text-slate-400'
                   }`}
                 >
                   {tab.icon}
@@ -69,15 +69,15 @@ export const MainTabNavigation: React.FC = () => {
 
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
-                    <span className={`text-xs sm:text-sm font-black tracking-tight ${isActive ? 'text-blue-900 dark:text-blue-100' : 'text-slate-800 dark:text-slate-200'}`}>
+                    <span className={`text-xs sm:text-sm font-black tracking-tight ${isActive ? 'text-blue-900 dark:text-slate-100' : 'text-slate-800 dark:text-slate-300'}`}>
                       {tab.label}
                     </span>
                     {tab.id === 'POLICIES' ? (
                       <span
                         className={`px-1.5 py-0.2 rounded-md text-[10px] font-extrabold ${
                           isActive
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
+                            ? 'bg-blue-600 dark:bg-slate-700 text-white'
+                            : 'bg-blue-100 text-blue-700 dark:bg-slate-800 dark:text-slate-300'
                         }`}
                       >
                         {mockPolicies.length}건

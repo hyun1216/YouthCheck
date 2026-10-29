@@ -88,7 +88,7 @@ export const PolicyDetailModal: React.FC = () => {
 
         {/* Top Meta */}
         <div className="flex items-center gap-2 flex-wrap mb-2">
-          <span className="text-xs font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+          <span className="text-xs font-semibold text-blue-600 dark:text-sky-300 flex items-center gap-1">
             <ShieldCheck className="w-3.5 h-3.5" />
             {selectedPolicy.hostingAgency}
           </span>
@@ -109,11 +109,11 @@ export const PolicyDetailModal: React.FC = () => {
         </div>
 
         {/* Benefit Highlight Callout */}
-        <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-emerald-500/10 border border-blue-200 dark:border-blue-900">
+        <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-emerald-500/10 border border-blue-200 dark:border-slate-800 dark:bg-slate-800/50">
           <div className="flex items-start gap-2.5">
             <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-blue-900 dark:text-blue-300 block mb-0.5">
+              <span className="text-xs font-bold text-blue-900 dark:text-slate-200 block mb-0.5">
                 💰 핵심 지원 혜택
               </span>
               <p className="text-sm font-bold text-slate-900 dark:text-white">
@@ -167,7 +167,7 @@ export const PolicyDetailModal: React.FC = () => {
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
               자격 요건 체크리스트 (직접 확인)
             </h3>
-            <span className="text-[11px] text-blue-600 dark:text-blue-400">클릭하여 체크</span>
+            <span className="text-[11px] text-blue-600 dark:text-sky-300">클릭하여 체크</span>
           </div>
 
           <div className="space-y-2">
@@ -180,12 +180,12 @@ export const PolicyDetailModal: React.FC = () => {
                   onClick={() => toggleCheck(idx)}
                   className={`w-full flex items-start gap-3 p-3 rounded-xl border text-left transition-all ${
                     isChecked
-                      ? 'bg-blue-50/70 border-blue-300 text-blue-900 dark:bg-blue-950/40 dark:border-blue-800 dark:text-blue-200'
+                      ? 'bg-blue-50/70 border-blue-300 text-blue-900 dark:bg-slate-800/80 dark:border-slate-700 dark:text-slate-200'
                       : 'bg-white dark:bg-slate-800/40 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300'
                   }`}
                 >
                   {isChecked ? (
-                    <CheckSquare className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                    <CheckSquare className="w-4 h-4 text-blue-600 dark:text-sky-400 shrink-0 mt-0.5" />
                   ) : (
                     <Square className="w-4 h-4 text-slate-300 dark:text-slate-600 shrink-0 mt-0.5" />
                   )}
@@ -237,7 +237,7 @@ export const PolicyDetailModal: React.FC = () => {
             href={selectedPolicy.officialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 min-w-[200px] flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25 transition-all"
+            className="flex-1 min-w-[200px] flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700/85 dark:hover:bg-blue-600 dark:text-blue-50 shadow-md shadow-blue-500/25 dark:shadow-none transition-all"
           >
             <span>공식 신청 페이지 바로가기 (광고 없음)</span>
             <ExternalLink className="w-4 h-4" />

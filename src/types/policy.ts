@@ -44,6 +44,7 @@ export interface Policy {
   };
   recurrenceCycle?: RecurrenceCycleType; // 재모집 주기 (마감 시 차기 일정 자동 계산용)
   recurrenceNotice?: string;             // 주기 안내 문구 (예: "분기별 모집 (1·4·7·10월)")
+  customDDayLabel?: string;              // 커스텀 일정 뱃지 표기 (예: "2027년 예정")
   
   // 상세 안내 (아코디언/모달에서만 노출)
   eligibilityChecklist: string[]; // ["만 19~34세 이하", "연봉 5,000만 원 이하", "무주택자"]

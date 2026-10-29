@@ -119,6 +119,15 @@ export interface DDayStatus {
 const STABLE_REFERENCE_DATE = new Date('2026-03-01T00:00:00Z');
 
 export function getDDayStatus(policy: Policy, baseDate: Date = STABLE_REFERENCE_DATE): DDayStatus {
+  if (policy.customDDayLabel) {
+    return {
+      type: 'UPCOMING',
+      label: policy.customDDayLabel,
+      badgeClass:
+        'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800 font-bold',
+    };
+  }
+
   const effectiveEndDate = policy.applicationPeriod?.endDate || policy.endDate;
   const effectiveStartDate = policy.applicationPeriod?.startDate || policy.startDate;
 

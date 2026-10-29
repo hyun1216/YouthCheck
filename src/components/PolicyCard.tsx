@@ -98,7 +98,7 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
     <div
       className={`group relative flex flex-col justify-between rounded-2xl border transition-all duration-200 bg-white dark:bg-slate-900 ${
         isExpanded
-          ? 'border-blue-400 dark:border-blue-600 shadow-md ring-1 ring-blue-500/20'
+          ? 'border-blue-400 dark:border-slate-700 shadow-md ring-1 ring-blue-500/20 dark:ring-slate-700/50'
           : 'border-slate-200/90 dark:border-slate-800/90 shadow-xs hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-sm'
       }`}
     >
@@ -153,7 +153,7 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
         {/* 1. [🎯 자격: (누가?)] - 카드 최상단에 굵은 텍스트로 가장 먼저 노출 */}
         <div className="mb-2.5">
           <div className="flex items-start gap-1.5">
-            <span className="text-sm font-extrabold text-blue-600 dark:text-blue-400 shrink-0 mt-0.5">
+            <span className="text-sm font-extrabold text-blue-600 dark:text-sky-300/90 shrink-0 mt-0.5">
               🎯 대상:
             </span>
             <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white leading-snug">
@@ -163,23 +163,23 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
         </div>
 
         {/* 2. [공식 정책명 + 그 아래 혜택 (동일한 크기)] */}
-        <div className="p-3 rounded-xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-100/90 dark:border-blue-900/60 mb-3 space-y-2">
+        <div className="p-3 rounded-xl bg-blue-50/70 dark:bg-slate-800/60 border border-blue-100/90 dark:border-slate-700/80 mb-3 space-y-2">
           {/* 공식 정책명 */}
           <div className="flex items-start gap-1.5">
-            <span className="text-xs sm:text-sm font-extrabold text-blue-700 dark:text-blue-400 shrink-0 mt-0.5">
+            <span className="text-xs sm:text-sm font-extrabold text-blue-700 dark:text-slate-300 shrink-0 mt-0.5">
               🏛️ 정책:
             </span>
-            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
+            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
               {policy.officialName || policy.title}
             </p>
           </div>
 
           {/* 그 아래에 동일한 크기로 혜택 노출 */}
-          <div className="flex items-start gap-1.5 pt-1.5 border-t border-blue-100/80 dark:border-blue-900/50">
+          <div className="flex items-start gap-1.5 pt-1.5 border-t border-blue-100/80 dark:border-slate-700/60">
             <span className="text-xs sm:text-sm font-extrabold text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5">
               💰 혜택:
             </span>
-            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-white leading-snug">
+            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
               {policy.benefitSummary}
             </p>
           </div>
@@ -242,12 +242,12 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
                     onClick={(e) => toggleCheck(idx, e)}
                     className={`w-full flex items-start gap-2.5 p-2 rounded-lg text-left transition-colors text-xs ${
                       isChecked
-                        ? 'bg-blue-50/80 text-blue-900 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-900'
-                        : 'bg-white text-slate-700 border border-slate-200/80 hover:border-slate-300 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
+                        ? 'bg-blue-50/80 text-blue-900 border border-blue-200 dark:bg-slate-800/80 dark:text-slate-200 dark:border-slate-700'
+                        : 'bg-white text-slate-700 border border-slate-200/80 hover:border-slate-300 dark:bg-slate-800/50 dark:text-slate-300 dark:border-slate-700/60'
                     }`}
                   >
                     {isChecked ? (
-                      <CheckSquare className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                      <CheckSquare className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 shrink-0 mt-0.5" />
                     ) : (
                       <Square className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
                     )}
@@ -296,9 +296,17 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
           </div>
 
           {/* Application Period Info (신청 기간 안내) */}
-          <div className="p-2.5 rounded-lg bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/40 flex items-center justify-between gap-2 text-xs">
-            <span className="font-semibold text-blue-900 dark:text-blue-300">
-              {policy.applicationType === 'ALWAYS' ? (
+          <div className="p-2.5 rounded-lg bg-blue-50/60 dark:bg-slate-800/60 border border-blue-100 dark:border-slate-700/70 flex items-center justify-between gap-2 text-xs">
+            <span className="font-semibold text-blue-900 dark:text-slate-200">
+              {policy.customDDayLabel ? (
+                <>
+                  <span className="text-amber-600 dark:text-amber-400 font-bold mr-1">
+                    [2026년 마감]
+                  </span>
+                  신청 기간: {policy.customDDayLabel}
+                  {policy.recurrenceNotice ? ` (${policy.recurrenceNotice})` : ''}
+                </>
+              ) : policy.applicationType === 'ALWAYS' ? (
                 '📅 접수 형태: 상시 신청 접수 (마감 기한 없음)'
               ) : effectivePeriod?.isNextCycle ? (
                 <>
@@ -353,7 +361,7 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
             href={policy.officialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-xs transition-colors"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white dark:bg-blue-700/85 dark:hover:bg-blue-600 dark:text-blue-50 shadow-xs transition-colors"
           >
             <span>공식 신청</span>
             <ExternalLink className="w-3 h-3" />

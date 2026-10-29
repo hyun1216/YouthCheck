@@ -176,12 +176,14 @@ export const mockPolicies: Policy[] = [
     maxAnnualIncome: 3600,
     employmentCondition: ['SME', 'GENERAL_CORP', 'FREELANCER', 'UNEMPLOYED'],
     applicationType: 'PERIOD',
-    startDate: '2026-03-01',
-    endDate: '2026-12-31',
+    startDate: '2027-01-01',
+    endDate: '2027-12-31',
     applicationPeriod: {
-      startDate: '2026-03-01',
-      endDate: '2026-12-31',
+      startDate: '2027-01-01',
+      endDate: '2027-12-31',
     },
+    customDDayLabel: '2027년 예정',
+    recurrenceNotice: '2026년 차수 마감 · 2027년 신규 모집 예정',
     eligibilityChecklist: [
       '만 19세 ~ 34세 독립거주 무주택 청년',
       '보증금 5천만 원 이하 및 월세 70만 원 이하 주택 거주',
@@ -196,7 +198,7 @@ export const mockPolicies: Policy[] = [
     ],
     officialUrl: 'https://www.bokjiro.go.kr',
     hostingAgency: '보건복지부 · 복지로',
-    tags: ['#월세지원', '#최대240만원', '#무주택청년', '#자취생'],
+    tags: ['#월세지원', '#최대240만원', '#무주택청년', '#자취생', '#2027년예정'],
   },
 
   // 7. 국민내일배움카드
@@ -345,7 +347,15 @@ export const mockPolicies: Policy[] = [
     ageRange: { min: 19, max: 39 },
     maxAnnualIncome: 8000,
     employmentCondition: ['SME', 'GENERAL_CORP'],
-    applicationType: 'ALWAYS',
+    applicationType: 'PERIOD',
+    startDate: '2025-12-01',
+    endDate: '2025-12-31',
+    applicationPeriod: {
+      startDate: '2025-12-01',
+      endDate: '2025-12-31',
+    },
+    recurrenceCycle: 'EVERY_DECEMBER',
+    recurrenceNotice: '매년 12월 연말정산 정기 집중 신청 (5년 이내 경정청구 상시 가능)',
     eligibilityChecklist: [
       '과세기간 종료일(12월 31일) 기준 무주택 세대의 세대주 또는 세대원',
       '총급여액 8,000만 원 이하 (종합소득금액 7,000만 원 이하) 근로소득자',
@@ -354,6 +364,7 @@ export const mockPolicies: Policy[] = [
       '전입신고 필수: 주민등록표 등본 주소지와 임대차계약서 상 주소지가 반드시 일치할 것',
       '월세 금액 자체 상한선 없음 (단, 연간 공제 대상 인정 한도는 최대 1,000만 원)',
       '확정일자는 불필요 (보증금 보호와 무관하게 전입신고+지급증빙만으로 공제 가능)',
+      '신청 시기를 놓쳐도 지난 5년 이내 납부한 월세는 홈택스 경정청구로 상시 환급 가능',
     ],
     requiredDocuments: [
       '주민등록표 등본 (전입일자 및 무주택 세대주 확인용)',
@@ -362,7 +373,7 @@ export const mockPolicies: Policy[] = [
     ],
     officialUrl: 'https://www.hometax.go.kr',
     hostingAgency: '국세청 홈택스',
-    tags: ['#월세세액공제', '#최대170만원환급', '#연말정산', '#총급여8000만이하', '#전입신고필수'],
+    tags: ['#매년12월', '#월세세액공제', '#최대170만원환급', '#연말정산', '#총급여8000만이하', '#전입신고필수', '#경정청구가능'],
   },
 
   // 12. 청년 전세보증금 반환보증료 지원
@@ -445,45 +456,6 @@ export const mockPolicies: Policy[] = [
     officialUrl: 'https://www.worldjob.or.kr',
     hostingAgency: '고용노동부 · 한국산업인력공단 (월드잡플러스)',
     tags: ['#해외인턴', '#국비지원', '#반기별모집', '#체재비지원', '#글로벌경력'],
-  },
-
-  // 14. 청년 연말정산 주거지원 세액공제 집중신청 (매년 12월 정기 접수)
-  {
-    id: 'youth-yearend-tax-period',
-    officialName: '청년 연말정산 월세·주거비 세액공제 집중신청',
-    title: '1년 치 월세의 최대 17% 환급! 연말정산 정기 집중접수',
-    subTitle: '매년 12월 1년간 납부한 월세 증빙 서류를 홈택스 간소화에 일괄 등록',
-    eligibilitySummary: '연봉 8,000만 원 이하 무주택 세대주 근로자',
-    benefitSummary: '1년간 납부한 월세의 최대 17% 세액공제 (최대 170만 원 13월의 월급 환급)',
-    benefitHighlight: '👉 매년 12월 정기 오픈! 1년 치 월세 최대 170만 원 연말 환급',
-    criticalBadge: '연봉 8,000만 이하 무주택자',
-    category: 'TAX',
-    region: ['전국'],
-    ageRange: { min: 19, max: 39 },
-    maxAnnualIncome: 8000,
-    employmentCondition: ['SME', 'GENERAL_CORP'],
-    applicationType: 'PERIOD',
-    startDate: '2025-12-01',
-    endDate: '2025-12-31',
-    applicationPeriod: {
-      startDate: '2025-12-01',
-      endDate: '2025-12-31',
-    },
-    recurrenceCycle: 'EVERY_DECEMBER',
-    recurrenceNotice: '매년 12월 정기 접수',
-    eligibilityChecklist: [
-      '해당 과세기간 총급여액 8,000만 원 이하 무주택 근로자',
-      '12월 31일 기준 주민등록표 등본 주소지와 임대차계약서 상 주소지 일치',
-      '국민주택규모(85㎡ 이하) 또는 기준시가 4억 원 이하 주택',
-    ],
-    requiredDocuments: [
-      '주민등록표 등본',
-      '임대차계약서 사본',
-      '월세 계좌이체 영수증',
-    ],
-    officialUrl: 'https://www.hometax.go.kr',
-    hostingAgency: '국세청 홈택스',
-    tags: ['#매년12월', '#월세세액공제', '#최대170만원', '#연말정산', '#정기신청'],
   },
 ];
 

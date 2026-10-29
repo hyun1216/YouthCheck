@@ -144,8 +144,8 @@ const CalendarSaveButtonInner: React.FC<CalendarSaveButtonInnerProps> = ({
           title={buttonTitle}
           className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors ${
             isNextCycle
-              ? 'text-amber-700 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300 dark:hover:bg-amber-900/60 border border-amber-200 dark:border-amber-800'
-              : 'text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300 dark:hover:bg-blue-900/60'
+              ? 'text-amber-700 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:text-amber-300 dark:hover:bg-amber-900/40 border border-amber-200 dark:border-amber-800/80'
+              : 'text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700/80 dark:border dark:border-slate-700'
           } ${!hideDropdown ? 'rounded-r-none' : ''} ${className}`}
         >
           <CalendarPlus className="w-3.5 h-3.5 shrink-0" />
@@ -164,8 +164,8 @@ const CalendarSaveButtonInner: React.FC<CalendarSaveButtonInnerProps> = ({
             title="캘린더 저장 방식 선택"
             className={`px-1.5 py-1.5 rounded-r-lg border-l transition-colors ${
               isNextCycle
-                ? 'text-amber-700 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/60 dark:text-amber-300 border-amber-200 dark:border-amber-800'
-                : 'text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300 border-blue-200/80 dark:border-blue-800/80'
+                ? 'text-amber-700 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/40 dark:text-amber-300 border-amber-200 dark:border-amber-800/80'
+                : 'text-blue-600 bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700/80 border-blue-200/80 dark:border-slate-700'
             }`}
           >
             <ChevronDown className={`w-3 h-3 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
