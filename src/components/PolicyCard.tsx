@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Policy } from '@/types/policy';
 import { usePolicyStore } from '@/store/usePolicyStore';
 import { CalendarSaveButton } from '@/components/CalendarSaveButton';
+import { getEffectiveApplicationPeriod } from '@/utils/calendar';
 import { checkEligibility, getDDayStatus } from '@/lib/eligibility';
 import {
   ExternalLink,
@@ -35,6 +36,7 @@ interface PolicyCardProps {
 export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded = false }) => {
   const [isExpanded, setIsExpanded] = useState(initialExpanded);
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const effectivePeriod = getEffectiveApplicationPeriod(policy);
 
   const {
     age,
@@ -296,12 +298,27 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
           {/* Application Period Info (신청 기간 안내) */}
           <div className="p-2.5 rounded-lg bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/40 flex items-center justify-between gap-2 text-xs">
             <span className="font-semibold text-blue-900 dark:text-blue-300">
-              📅 신청 기간:{' '}
-              {policy.applicationPeriod
-                ? `${policy.applicationPeriod.startDate} ~ ${policy.applicationPeriod.endDate}`
-                : policy.startDate && policy.endDate
-                ? `${policy.startDate} ~ ${policy.endDate}`
-                : '상시 접수 가능'}
+              {policy.applicationType === 'ALWAYS' ? (
+                '📅 접수 형태: 상시 신청 접수 (마감 기한 없음)'
+              ) : effectivePeriod?.isNextCycle ? (
+                <>
+                  <span className="text-amber-600 dark:text-amber-400 font-bold mr-1">
+                    [이전 차수 마감]
+                  </span>
+                  차기 {effectivePeriod.cycleLabel} 모집: {effectivePeriod.startDate} ~{' '}
+                  {effectivePeriod.endDate}
+                  {policy.recurrenceNotice ? ` (${policy.recurrenceNotice})` : ''}
+                </>
+              ) : (
+                <>
+                  📅 신청 기간:{' '}
+                  {policy.applicationPeriod
+                    ? `${policy.applicationPeriod.startDate} ~ ${policy.applicationPeriod.endDate}`
+                    : policy.startDate && policy.endDate
+                    ? `${policy.startDate} ~ ${policy.endDate}`
+                    : '신청 기간 공고 대기'}
+                </>
+              )}
             </span>
           </div>
         </div>

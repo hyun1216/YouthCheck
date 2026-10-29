@@ -4,6 +4,13 @@ export type EmploymentType = 'SME' | 'GENERAL_CORP' | 'UNEMPLOYED' | 'FREELANCER
 
 export type MainTabType = 'POLICIES' | 'TIPS' | 'NEWS';
 
+export type RecurrenceCycleType =
+  | 'MONTHLY'          // 매월 (예: 매월 1일~15일)
+  | 'QUARTERLY'        // 분기별 (3개월 주기)
+  | 'BIANNUAL'         // 반기별 (6개월 주기)
+  | 'YEARLY'           // 매년 (1년 주기)
+  | 'EVERY_DECEMBER';  // 매년 12월 (연말정산 등)
+
 export interface Policy {
   id: string;
   // 직관적 노출을 위한 핵심 필드
@@ -35,6 +42,8 @@ export interface Policy {
     startDate: string; // 'YYYY-MM-DD' 포맷
     endDate: string;   // 'YYYY-MM-DD' 포맷
   };
+  recurrenceCycle?: RecurrenceCycleType; // 재모집 주기 (마감 시 차기 일정 자동 계산용)
+  recurrenceNotice?: string;             // 주기 안내 문구 (예: "분기별 모집 (1·4·7·10월)")
   
   // 상세 안내 (아코디언/모달에서만 노출)
   eligibilityChecklist: string[]; // ["만 19~34세 이하", "연봉 5,000만 원 이하", "무주택자"]

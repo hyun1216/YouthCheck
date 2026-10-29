@@ -148,6 +148,26 @@ export function getDDayStatus(policy: Policy, baseDate: Date = STABLE_REFERENCE_
   }
 
   if (daysToEnd < 0) {
+    if (policy.recurrenceCycle) {
+      const cycleText =
+        policy.recurrenceCycle === 'MONTHLY'
+          ? '익월'
+          : policy.recurrenceCycle === 'QUARTERLY'
+          ? '다음 분기'
+          : policy.recurrenceCycle === 'BIANNUAL'
+          ? '차기 반기'
+          : policy.recurrenceCycle === 'EVERY_DECEMBER'
+          ? '12월 정기'
+          : '차기';
+
+      return {
+        type: 'UPCOMING',
+        label: `차기 ${cycleText} 모집`,
+        badgeClass:
+          'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-300 dark:border-amber-800',
+      };
+    }
+
     return {
       type: 'CLOSED',
       label: '모집 마감',
