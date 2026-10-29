@@ -119,7 +119,10 @@ export interface DDayStatus {
 const STABLE_REFERENCE_DATE = new Date('2026-03-01T00:00:00Z');
 
 export function getDDayStatus(policy: Policy, baseDate: Date = STABLE_REFERENCE_DATE): DDayStatus {
-  if (policy.applicationType === 'ALWAYS' || !policy.endDate) {
+  const effectiveEndDate = policy.applicationPeriod?.endDate || policy.endDate;
+  const effectiveStartDate = policy.applicationPeriod?.startDate || policy.startDate;
+
+  if (policy.applicationType === 'ALWAYS' || !effectiveEndDate) {
     return {
       type: 'ALWAYS',
       label: '상시 신청',
@@ -128,8 +131,8 @@ export function getDDayStatus(policy: Policy, baseDate: Date = STABLE_REFERENCE_
   }
 
   const now = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate()).getTime();
-  const end = new Date(policy.endDate).getTime();
-  const start = policy.startDate ? new Date(policy.startDate).getTime() : now;
+  const end = new Date(effectiveEndDate).getTime();
+  const start = effectiveStartDate ? new Date(effectiveStartDate).getTime() : now;
 
   const msPerDay = 1000 * 60 * 60 * 24;
   const daysToEnd = Math.ceil((end - now) / msPerDay);

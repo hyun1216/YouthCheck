@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Policy } from '@/types/policy';
 import { usePolicyStore } from '@/store/usePolicyStore';
+import { CalendarSaveButton } from '@/components/CalendarSaveButton';
 import { checkEligibility, getDDayStatus } from '@/lib/eligibility';
 import {
   ExternalLink,
@@ -291,6 +292,18 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
               </div>
             ))}
           </div>
+
+          {/* Application Period Info (신청 기간 안내) */}
+          <div className="p-2.5 rounded-lg bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/40 flex items-center justify-between gap-2 text-xs">
+            <span className="font-semibold text-blue-900 dark:text-blue-300">
+              📅 신청 기간:{' '}
+              {policy.applicationPeriod
+                ? `${policy.applicationPeriod.startDate} ~ ${policy.applicationPeriod.endDate}`
+                : policy.startDate && policy.endDate
+                ? `${policy.startDate} ~ ${policy.endDate}`
+                : '상시 접수 가능'}
+            </span>
+          </div>
         </div>
       )}
 
@@ -304,7 +317,7 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Accordion Toggle */}
           <button
             type="button"
@@ -314,6 +327,9 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
             <span>{isExpanded ? '접기' : '자격 & 서류'}</span>
             {isExpanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
           </button>
+
+          {/* Calendar Save Button */}
+          <CalendarSaveButton policy={policy} />
 
           {/* Official Direct Link (광고 링크 배제) */}
           <a

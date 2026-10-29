@@ -4,6 +4,7 @@ import React from 'react';
 import { Policy } from '@/types/policy';
 import { usePolicyStore } from '@/store/usePolicyStore';
 import { checkEligibility, getDDayStatus } from '@/lib/eligibility';
+import { CalendarSaveButton } from '@/components/CalendarSaveButton';
 import {
   Calendar,
   Clock,
@@ -120,6 +121,8 @@ export const DeadlineView: React.FC<DeadlineViewProps> = ({ policies }) => {
             >
               <Bookmark className={`w-4 h-4 ${bookmarked ? 'fill-amber-500' : ''}`} />
             </button>
+
+            <CalendarSaveButton policy={policy} />
 
             <a
               href={policy.officialUrl}

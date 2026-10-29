@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { usePolicyStore } from '@/store/usePolicyStore';
 import { checkEligibility, getDDayStatus } from '@/lib/eligibility';
+import { CalendarSaveButton } from '@/components/CalendarSaveButton';
 import {
   X,
   ExternalLink,
@@ -216,11 +217,11 @@ export const PolicyDetailModal: React.FC = () => {
         </div>
 
         {/* Bottom Actions */}
-        <div className="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+        <div className="mt-8 pt-5 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
           <button
             type="button"
             onClick={() => toggleBookmark(selectedPolicy.id)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
+            className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all ${
               bookmarked
                 ? 'bg-amber-50 text-amber-600 border-amber-300 dark:bg-amber-950 dark:border-amber-800 dark:text-amber-300'
                 : 'bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700'
@@ -230,11 +231,13 @@ export const PolicyDetailModal: React.FC = () => {
             <span>{bookmarked ? '저장됨' : '북마크 저장'}</span>
           </button>
 
+          <CalendarSaveButton policy={selectedPolicy} />
+
           <a
             href={selectedPolicy.officialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25 transition-all"
+            className="flex-1 min-w-[200px] flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/25 transition-all"
           >
             <span>공식 신청 페이지 바로가기 (광고 없음)</span>
             <ExternalLink className="w-4 h-4" />
