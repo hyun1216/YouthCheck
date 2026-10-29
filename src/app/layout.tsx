@@ -57,6 +57,7 @@ export const metadata: Metadata = {
     images: ['/og-image.png'],
   },
   verification: {
+    google: 'dKupR7ufP6HfZnlTF7pKVVuWFmxOii2Qe4uXLzEdl3g',
     other: {
       'naver-site-verification': '334c79de8f592f8f8fd19d1f0ccb1ca85d34ed25',
     },
@@ -75,6 +76,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <meta name="google-site-verification" content="dKupR7ufP6HfZnlTF7pKVVuWFmxOii2Qe4uXLzEdl3g" />
         <meta name="naver-site-verification" content="334c79de8f592f8f8fd19d1f0ccb1ca85d34ed25" />
         <Script
           id="theme-initializer"
