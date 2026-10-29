@@ -25,14 +25,14 @@ const TABS: TabItem[] = [
     id: 'TIPS',
     label: '청년꿀팁',
     subLabel: '이력서 · 이직 · 재테크 · 부업 · 노동법',
-    icon: <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />,
+    icon: <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 dark:text-slate-400" />,
     badge: 'HOT',
   },
   {
     id: 'NEWS',
     label: '실시간 소식',
     subLabel: '신청 오픈 · 개정 보도자료',
-    icon: <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-rose-500" />,
+    icon: <Bell className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 dark:text-slate-400" />,
     badge: 'NEW',
   },
 ];
@@ -74,22 +74,20 @@ export const MainTabNavigation: React.FC = () => {
                     </span>
                     {tab.id === 'POLICIES' ? (
                       <span
-                        className={`px-1.5 py-0.2 rounded-md text-[10px] font-extrabold ${
+                        className={`px-1.5 py-0.2 rounded text-[10px] font-semibold ${
                           isActive
                             ? 'bg-blue-600 dark:bg-slate-700 text-white'
-                            : 'bg-blue-100 text-blue-700 dark:bg-slate-800 dark:text-slate-300'
+                            : 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
                         }`}
                       >
-                        {mockPolicies.length}건
+                        {mockPolicies.length}
                       </span>
                     ) : tab.badge ? (
                       <span
-                        className={`px-1.5 py-0.2 rounded-md text-[10px] font-extrabold ${
+                        className={`px-1.5 py-0.2 rounded text-[10px] font-semibold ${
                           isActive
                             ? 'bg-blue-600 text-white'
-                            : tab.badge === 'HOT'
-                            ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
-                            : 'bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300'
+                            : 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400'
                         }`}
                       >
                         {tab.badge}

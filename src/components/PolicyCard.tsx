@@ -104,18 +104,16 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
     >
       {/* Card Header & Content */}
       <div className="p-4 sm:p-5">
-        {/* Top Badges Row (Category + D-Day + Bookmark) */}
+        {/* Top Badges Row (Category + D-Day + Critical Condition + Bookmark) */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
-            {/* Category Badge */}
-            <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.8 rounded-lg text-[11px] font-bold border ${cat.badgeClass}`}
-            >
-              {cat.icon}
+            {/* Category Badge - 옅은 무채색 통일 */}
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.8 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200/70 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700/60">
+              <span className="text-slate-400 dark:text-slate-500">{cat.icon}</span>
               <span>{cat.label}</span>
             </span>
 
-            {/* D-Day Badge */}
+            {/* D-Day / Status Badge (중요 상태값 1개만 강조) */}
             <span
               className={`inline-flex items-center gap-1 px-2 py-0.8 rounded-lg text-[11px] font-bold border ${dDay.badgeClass}`}
             >
@@ -123,10 +121,9 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
               <span>{dDay.label}</span>
             </span>
 
-            {/* Critical Restriction Highlight Badge (결정적 자격 조건 빨간색/주황색 강조 뱃지) */}
+            {/* Critical Restriction Highlight Badge - 옅은 무채색 통일 */}
             {policy.criticalBadge && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.8 rounded-lg text-[11px] font-extrabold bg-rose-50 text-rose-700 border border-rose-200 dark:bg-rose-950/70 dark:text-rose-300 dark:border-rose-800">
-                <BadgeAlert className="w-3 h-3 text-rose-600 dark:text-rose-400" />
+              <span className="inline-flex items-center gap-1 px-2 py-0.8 rounded-lg text-[11px] font-medium bg-slate-100 text-slate-600 border border-slate-200/70 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700/60">
                 <span>{policy.criticalBadge}</span>
               </span>
             )}
@@ -150,36 +147,36 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
           </button>
         </div>
 
-        {/* 1. [🎯 자격: (누가?)] - 카드 최상단에 굵은 텍스트로 가장 먼저 노출 */}
-        <div className="mb-2.5">
-          <div className="flex items-start gap-1.5">
-            <span className="text-sm font-extrabold text-blue-600 dark:text-sky-300/90 shrink-0 mt-0.5">
-              🎯 대상:
+        {/* 1. 대상 (이모지 제거, font-semibold text-gray-500 라벨 + text-gray-900 본문) */}
+        <div className="mb-3">
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-slate-400 shrink-0">
+              대상:
             </span>
-            <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white leading-snug">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-slate-100 leading-snug">
               {policy.eligibilitySummary}
             </h3>
           </div>
         </div>
 
-        {/* 2. [공식 정책명 + 그 아래 혜택 (동일한 크기)] */}
-        <div className="p-3 rounded-xl bg-blue-50/70 dark:bg-slate-800/60 border border-blue-100/90 dark:border-slate-700/80 mb-3 space-y-2">
+        {/* 2. 정책 & 혜택 (배경 박스 및 테두리 선 제거, 여백만으로 구분) */}
+        <div className="space-y-2 mb-3.5">
           {/* 공식 정책명 */}
-          <div className="flex items-start gap-1.5">
-            <span className="text-xs sm:text-sm font-extrabold text-blue-700 dark:text-slate-300 shrink-0 mt-0.5">
-              🏛️ 정책:
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-slate-400 shrink-0">
+              정책:
             </span>
-            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
+            <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-slate-100 leading-snug">
               {policy.officialName || policy.title}
             </p>
           </div>
 
-          {/* 그 아래에 동일한 크기로 혜택 노출 */}
-          <div className="flex items-start gap-1.5 pt-1.5 border-t border-blue-100/80 dark:border-slate-700/60">
-            <span className="text-xs sm:text-sm font-extrabold text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5">
-              💰 혜택:
+          {/* 혜택 */}
+          <div className="flex items-baseline gap-2">
+            <span className="text-xs sm:text-sm font-semibold text-gray-500 dark:text-slate-400 shrink-0">
+              혜택:
             </span>
-            <p className="text-xs sm:text-sm font-bold text-slate-900 dark:text-slate-100 leading-snug">
+            <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-slate-100 leading-snug">
               {policy.benefitSummary}
             </p>
           </div>
@@ -334,10 +331,10 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
 
       {/* Card Action Footer with Small Official Name at Bottom */}
       <div className="p-3 sm:p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2 bg-slate-50/40 dark:bg-slate-900/40 rounded-b-2xl">
-        {/* 주관 기관 표시 */}
+        {/* 주관 기관 표시 (이모지 제거) */}
         <div className="min-w-0 flex-1">
           <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium truncate block">
-            🏛️ {policy.hostingAgency}
+            {policy.hostingAgency}
           </span>
         </div>
 

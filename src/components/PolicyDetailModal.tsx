@@ -101,20 +101,20 @@ export const PolicyDetailModal: React.FC = () => {
         {/* Title & Eligibility Summary */}
         <div className="mb-2">
           <span className="text-[11px] font-semibold text-slate-400 dark:text-slate-500 block mb-1">
-            #공식명: {selectedPolicy.officialName || selectedPolicy.title}
+            공식 정책명: {selectedPolicy.officialName || selectedPolicy.title}
           </span>
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-tight">
-            🎯 {selectedPolicy.eligibilitySummary}
+            {selectedPolicy.eligibilitySummary}
           </h2>
         </div>
 
         {/* Benefit Highlight Callout */}
-        <div className="mt-4 p-4 rounded-2xl bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-emerald-500/10 border border-blue-200 dark:border-slate-800 dark:bg-slate-800/50">
+        <div className="mt-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
           <div className="flex items-start gap-2.5">
-            <Sparkles className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
+            <Sparkles className="w-5 h-5 text-blue-600 dark:text-sky-300 shrink-0 mt-0.5" />
             <div>
-              <span className="text-xs font-bold text-blue-900 dark:text-slate-200 block mb-0.5">
-                💰 핵심 지원 혜택
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-0.5">
+                핵심 지원 혜택
               </span>
               <p className="text-sm font-bold text-slate-900 dark:text-white">
                 {selectedPolicy.benefitSummary}

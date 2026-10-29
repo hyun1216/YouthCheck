@@ -135,7 +135,7 @@ export function getDDayStatus(policy: Policy, baseDate: Date = STABLE_REFERENCE_
     return {
       type: 'ALWAYS',
       label: '상시 신청',
-      badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-300 dark:border-emerald-800',
+      badgeClass: 'bg-slate-100 text-slate-600 border-slate-200/70 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700/60',
     };
   }
 

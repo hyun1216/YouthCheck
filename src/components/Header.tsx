@@ -4,6 +4,7 @@ import React from 'react';
 import { usePolicyStore } from '@/store/usePolicyStore';
 import { ShieldCheck, Bookmark, Sparkles, RefreshCcw } from 'lucide-react';
 import { mockPolicies } from '@/data/mockPolicies';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export const Header: React.FC = () => {
   const { bookmarkedIds, onlyBookmarked, setOnlyBookmarked, resetFilters } = usePolicyStore();
@@ -33,7 +34,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-2.5">
           <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 dark:text-slate-300">
             <Sparkles className="w-3.5 h-3.5 text-blue-500" />
             <span>엄선 정책 <strong className="text-blue-600 dark:text-blue-400">{totalCount}</strong>개 실시간 체크</span>
@@ -43,7 +44,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setOnlyBookmarked(!onlyBookmarked)}
-            className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all ${
+            className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all ${
               onlyBookmarked
                 ? 'bg-amber-500 text-white shadow-sm shadow-amber-500/30'
                 : 'bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200'
@@ -59,6 +60,9 @@ export const Header: React.FC = () => {
               </span>
             )}
           </button>
+
+          {/* Light / Dark Mode Toggle Button */}
+          <ThemeToggle />
 
           {/* Reset Button */}
           <button
