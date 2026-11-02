@@ -57,6 +57,13 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
   const dDay = getDDayStatus(policy);
   const bookmarked = isBookmarked(policy.id);
 
+  // 2027년 조건 완화 정책 여부 판별
+  const is2027Relaxed =
+    Boolean(policy.isRelaxedCondition) ||
+    policy.id === 'youth-monthly-rent-support' ||
+    Boolean(policy.title?.includes('2027년 개편안')) ||
+    Boolean(policy.officialName?.includes('2027년 개편안'));
+
   // Category visual mapping
   const categoryConfig: Record<
     string,
@@ -104,7 +111,7 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
     >
       {/* Card Header & Content */}
       <div className="p-4 sm:p-5">
-        {/* Top Badges Row (Category + D-Day + Critical Condition + Bookmark) */}
+        {/* Top Badges Row (Category + D-Day + Critical Condition + 2027 Badge + Bookmark) */}
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
             {/* Category Badge - 옅은 무채색 통일 */}
@@ -129,22 +136,31 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
             )}
           </div>
 
-          {/* Bookmark Button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              toggleBookmark(policy.id);
-            }}
-            title={bookmarked ? '저장 취소' : '정책 저장'}
-            className={`p-1.5 rounded-lg transition-colors ${
-              bookmarked
-                ? 'bg-amber-50 text-amber-500 dark:bg-amber-950/60 dark:text-amber-400'
-                : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
-            }`}
-          >
-            <Bookmark className={`w-4 h-4 ${bookmarked ? 'fill-amber-500' : ''}`} />
-          </button>
+          {/* Right Top Area: 2027년 조건 완화 Badge & Bookmark Button */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            {is2027Relaxed && (
+              <span className="inline-flex items-center px-2 py-0.8 rounded-lg text-[11px] font-semibold bg-blue-50 text-blue-600 border border-blue-200/80 dark:bg-blue-950/60 dark:text-blue-400 dark:border-blue-800/80 whitespace-nowrap">
+                2027년 조건 완화
+              </span>
+            )}
+
+            {/* Bookmark Button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleBookmark(policy.id);
+              }}
+              title={bookmarked ? '저장 취소' : '정책 저장'}
+              className={`p-1.5 rounded-lg transition-colors ${
+                bookmarked
+                  ? 'bg-amber-50 text-amber-500 dark:bg-amber-950/60 dark:text-amber-400'
+                  : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              <Bookmark className={`w-4 h-4 ${bookmarked ? 'fill-amber-500' : ''}`} />
+            </button>
+          </div>
         </div>
 
         {/* 1. 대상 (이모지 제거, font-semibold text-gray-500 라벨 + text-gray-900 본문) */}
@@ -177,18 +193,18 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
               혜택:
             </span>
             <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-slate-100 leading-snug">
-              {policy.benefitSummary}
+              {policy.benefitHighlight || policy.benefitSummary}
             </p>
           </div>
         </div>
 
-        {/* Tags */}
+        {/* Tags (모바일 환경에서도 줄바꿈 시 간격이 깨지지 않도록 whitespace-nowrap break-keep 적용) */}
         {policy.tags && policy.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          <div className="flex flex-wrap items-center gap-1.5 mb-3">
             {policy.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-500 dark:text-slate-400"
+                className="px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-[11px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap break-keep"
               >
                 {tag}
               </span>
@@ -221,6 +237,17 @@ export const PolicyCard: React.FC<PolicyCardProps> = ({ policy, initialExpanded 
       {/* Accordion Expandable Details (복잡한 서류나 상세 내용은 클릭했을 때만 톡 펼쳐짐) */}
       {isExpanded && (
         <div className="px-4 pb-4 sm:px-5 sm:pb-5 space-y-4 border-t border-slate-100 dark:border-slate-800 pt-3 bg-slate-50/60 dark:bg-slate-900/60 rounded-b-2xl animate-in fade-in duration-150">
+          {/* Detailed Description / Fact Check Box */}
+          {policy.detailedDescription && (
+            <div className="p-3 rounded-xl bg-blue-50/70 dark:bg-blue-950/40 border border-blue-200/70 dark:border-blue-900/50 text-xs text-blue-950 dark:text-blue-200 leading-relaxed">
+              <div className="font-semibold text-blue-800 dark:text-blue-300 mb-1 flex items-center gap-1">
+                <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                <span>핵심 팩트체크 및 제도 안내</span>
+              </div>
+              <p className="leading-relaxed">{policy.detailedDescription}</p>
+            </div>
+          )}
+
           {/* Detailed Eligibility Checklist */}
           <div>
             <div className="flex items-center justify-between mb-2">

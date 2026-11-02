@@ -19,6 +19,8 @@ export interface Policy {
   officialName: string;       // 공식 행정 정책명 (예: "청년도약계좌")
   criticalBadge?: string;     // 결정적 자격 조건 강조 뱃지 (예: "중소기업 재직 필수", "무주택 세대주", "미취업 구직자")
   benefitHighlight?: string;  // 역발상 혜택 하이라이트 문구
+  detailedDescription?: string; // 팩트체크 및 제도 상세 설명
+  isRelaxedCondition?: boolean; // 조건 완화 개편 정책 여부
   isDeadlineImminent?: boolean;
 
   // 기존 호환 필드
